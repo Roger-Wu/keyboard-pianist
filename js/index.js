@@ -1,15 +1,17 @@
 // configs
 
 var keyboard_left_note = 'G3';
-var piano_left_note = 'C3';
-var piano_right_note = 'C6';
+var piano_left_note = 'C2';
+var piano_right_note = 'C7';
+var piano_left_keyboard_left_note = 'C2';
+var piano_right_keyboard_left_note = 'C6';
 var fadeout_time = 150; // ms
 var audio_start_time = 0;
 // jQuery.fx.interval = 4;
 
 // constants
 
-var notes_letters = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+var note_letters = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
 var natural_note_letters = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 var flat_note_letters = ['Db', 'Eb', 'E', 'Gb', 'Ab', 'Bb', 'B'];
 
@@ -17,8 +19,8 @@ var notes = ['A0', 'Bb0', 'B0'];
 var natural_notes = ['A0', 'B0'];
 var flat_notes = ['A0', 'Bb0', 'B'];
 for (var octave = 1; octave <= 7; octave++) {
-  for (var i = 0; i < notes_letters.length; i++) {
-    notes.push(notes_letters[i] + octave.toString());
+  for (var i = 0; i < note_letters.length; i++) {
+    notes.push(note_letters[i] + octave.toString());
   }
   for (var i = 0; i < natural_note_letters.length; i++) {
     natural_notes.push(natural_note_letters[i] + octave.toString());
@@ -62,7 +64,7 @@ keyboard_black_key_groups = [
   ['='],
 ];
 
-char_to_keycode = {
+char_to_keycode = { // because ascii code != keycode
   '⇥': 9, // tab
   ',': 188,
   '.': 190,
@@ -79,27 +81,25 @@ char_to_keycode = {
 
 // initialize keycode-note mapping
 
-var left_note_idx = natural_notes.indexOf(keyboard_left_note);
+var keyboard_left_note_idx = natural_notes.indexOf(keyboard_left_note);
 var keycode_to_note_dict = {};
 var note_to_keychar_dict = {};
 var is_show_key_mapping = true;
 
-var keycode_to_note = function(keycode) {
+function keycode_to_note (keycode) {
   return keycode_to_note_dict[keycode];
 }
 
-var set_keycode_note_mapping = function() {
-  left_note_idx = natural_notes.indexOf(keyboard_left_note);
+function set_keycode_note_mapping() {
   keycode_to_note_dict = {};
   note_to_keychar_dict = {};
 
   // set white key mapping
-
   for (var group_idx = 0; group_idx < keyboard_white_key_groups.length; group_idx++) {
     for (var j = 0; j < keyboard_white_key_groups[group_idx].length; j++) {
       var char = keyboard_white_key_groups[group_idx][j];
       var keycode = char_to_keycode.hasOwnProperty(char) ? char_to_keycode[char] : char.charCodeAt(0);
-      var note = natural_notes[left_note_idx + group_idx - 1];
+      var note = natural_notes[keyboard_left_note_idx + group_idx - 1];
 
       keycode_to_note_dict[keycode] = note;
       if (!note_to_keychar_dict.hasOwnProperty(note)) {
@@ -111,12 +111,11 @@ var set_keycode_note_mapping = function() {
   }
 
   // set black key mapping
-
   for (var group_idx = 0; group_idx < keyboard_black_key_groups.length; group_idx++) {
     for (var j = 0; j < keyboard_black_key_groups[group_idx].length; j++) {
       var char = keyboard_black_key_groups[group_idx][j];
       var keycode = char_to_keycode.hasOwnProperty(char) ? char_to_keycode[char] : char.charCodeAt(0);
-      var note = flat_notes[left_note_idx + group_idx];
+      var note = flat_notes[keyboard_left_note_idx + group_idx];
 
       keycode_to_note_dict[keycode] = note;
       if (!note_to_keychar_dict.hasOwnProperty(note)) {
@@ -135,7 +134,7 @@ var key_is_pressed = {};
 var $piano_keys = {};
 var is_mouse_down = false;
 
-var press_key = function(note) {
+function press_key(note) {
   if (!$piano_keys.hasOwnProperty(note)) return;
   if (key_is_pressed[note]) return;
   key_is_pressed[note] = true;
@@ -143,14 +142,14 @@ var press_key = function(note) {
   play_audio(note);
 };
 
-var release_key = function(note) {
+function release_key(note) {
   if (!$piano_keys.hasOwnProperty(note)) return;
   key_is_pressed[note] = false;
   $piano_keys[note].removeClass("piano-key-pressed");
   fadeout_audio(note);
 };
 
-var reset_audio = function(note) {
+function reset_audio(note) {
   var audio = document.getElementById('audio-' + note);
   audio.pause();
   audio.currentTime = audio_start_time;
@@ -158,7 +157,7 @@ var reset_audio = function(note) {
   return audio;
 }
 
-var play_audio = function(note) {
+function play_audio(note) {
   // stop previous fadeout
   clearTimeout(key_fadeout_timeouts[note]);
 
@@ -166,10 +165,9 @@ var play_audio = function(note) {
   audio.play();
 };
 
-var fadeout_audio = function(note, prev_time=new Date()) {
+function fadeout_audio(note, prev_time=new Date()) {
   var curr_time = new Date()
   var time_diff = curr_time - prev_time; // ms
-  // console.log(time_diff);
 
   var audio = document.getElementById('audio-' + note);
   var new_volume = audio.volume - 1 * time_diff / fadeout_time;
@@ -182,6 +180,50 @@ var fadeout_audio = function(note, prev_time=new Date()) {
     }, 0);
   }
 };
+
+// insert key mapping on piano keys
+
+function insert_key_mapping_into_keys() {
+  // clean keys
+  Object.values($piano_keys).forEach( function($key) {
+    $key.empty();
+  });
+
+  for (var note in note_to_keychar_dict) {
+    if (!note_to_keychar_dict.hasOwnProperty(note)) continue;
+    var chars = note_to_keychar_dict[note];
+    $key = $piano_keys[note];
+    if ($key) {
+      $text_container = $('<div class="piano-key-text-container"></div>');
+      chars.forEach(function(char) {
+        $text_container.append('<div class="piano-key-text">' + char + '</div>');
+      });
+      $key.append($text_container);
+    }
+  }
+}
+
+// shift key mapping
+
+function left_shift_key_mapping() {
+  if (keyboard_left_note_idx === natural_notes.indexOf(piano_left_keyboard_left_note))
+    return;
+
+  keyboard_left_note_idx -= 1;
+  set_keycode_note_mapping();
+  insert_key_mapping_into_keys();
+}
+
+function right_shift_key_mapping() {
+  if (keyboard_left_note_idx === natural_notes.indexOf(piano_right_keyboard_left_note))
+    return;
+
+  keyboard_left_note_idx += 1;
+  set_keycode_note_mapping();
+  insert_key_mapping_into_keys();
+}
+
+// main
 
 var onload = function() {
   set_keycode_note_mapping();
@@ -206,10 +248,10 @@ var onload = function() {
   // insert piano keys
 
   var $keyboard = $('#piano-keyboard');
-  var left_note_idx = notes.indexOf(piano_left_note);
-  var right_note_idx = notes.indexOf(piano_right_note);
+  var piano_left_note_idx = notes.indexOf(piano_left_note);
+  var piano_right_note_idx = notes.indexOf(piano_right_note);
 
-  for (var i = left_note_idx; i <= right_note_idx; i++) {
+  for (var i = piano_left_note_idx; i <= piano_right_note_idx; i++) {
     var note = notes[i];
     var is_black_key = (note[1] === 'b');
     var $element, $key;
@@ -234,35 +276,47 @@ var onload = function() {
     $piano_keys[note] = $key;
   }
 
+  // insert key mapping
+
+  insert_key_mapping_into_keys();
+
   // keyboard events
 
   $(document).keydown(function(event) {
-    var keycode = event.which;
-    var note = keycode_to_note(keycode);
-    press_key(note);
+    // disable TAB key
+    if(event.which == 9) { event.preventDefault(); }
+    // left arrow
+    else if (event.which === 37) {
+      left_shift_key_mapping();
+    }
+    // right arrow
+    else if (event.which === 39) {
+      right_shift_key_mapping();
+    }
+    else {
+      var keycode = event.which;
+      var note = keycode_to_note(keycode);
+      press_key(note);
+    }
   });
   $(document).keyup(function(event) {
+    // disable TAB key
+    // if(event.which == 9) { event.preventDefault(); }
+
     var keycode = event.which;
     var note = keycode_to_note(keycode);
     release_key(note);
   });
 
-  // insert key mapping on piano keys
-
-  for (var note in note_to_keychar_dict) {
-    if (!note_to_keychar_dict.hasOwnProperty(note)) continue;
-    var chars = note_to_keychar_dict[note];
-    $key = $piano_keys[note];
-    $text_container = $('<div class="piano-key-text-container"></div>');
-    chars.forEach(function(char) {
-      $text_container.append('<div class="piano-key-text">' + char + '</div>');
-    });
-    $key.append($text_container);
-  }
+  $('#left-arrow-button').click(function() {
+    left_shift_key_mapping();
+  });
+  $('#right-arrow-button').click(function() {
+    right_shift_key_mapping();
+  });
 
   // decide whether to show key mapping
   var show_hide_key_mapping = function() {
-    console.log($('#is-show-key-mapping')[0].checked);
     if ($('#is-show-key-mapping')[0].checked) {
       $('.piano-key-text').css("display", "block");
     } else {
