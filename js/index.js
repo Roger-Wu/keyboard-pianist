@@ -212,6 +212,7 @@ function left_shift_key_mapping() {
   keyboard_left_note_idx -= 1;
   set_keycode_note_mapping();
   insert_key_mapping_into_keys();
+  show_hide_key_mapping();
 }
 
 function right_shift_key_mapping() {
@@ -221,7 +222,16 @@ function right_shift_key_mapping() {
   keyboard_left_note_idx += 1;
   set_keycode_note_mapping();
   insert_key_mapping_into_keys();
+  show_hide_key_mapping();
 }
+
+function show_hide_key_mapping() {
+  if ($('#is-show-key-mapping')[0].checked) {
+    $('.piano-key-text').css("display", "block");
+  } else {
+    $('.piano-key-text').css("display", "none");
+  }
+};
 
 // main
 
@@ -316,13 +326,7 @@ var onload = function() {
   });
 
   // decide whether to show key mapping
-  var show_hide_key_mapping = function() {
-    if ($('#is-show-key-mapping')[0].checked) {
-      $('.piano-key-text').css("display", "block");
-    } else {
-      $('.piano-key-text').css("display", "none");
-    }
-  };
+
   $('#is-show-key-mapping').change(show_hide_key_mapping);
   show_hide_key_mapping();
 }
