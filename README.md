@@ -2,7 +2,7 @@
 A piano web-app with natural key mapping.
 
 ## Demo
-https://roger-wu.github.io/keyboard-piano
+https://roger-wu.github.io/keyboard-pianist
 
 ## Features
 * Key range: C2-C7
@@ -11,5 +11,6 @@ https://roger-wu.github.io/keyboard-piano
 * A natural fadeout when releasing keys.
 * pure HTML/CSS/Javascript.
 
-Samples are provided by the University of Iowa's Electronic Music Studio:
+## Special Thanks
+Thanks for the samples provided by the University of Iowa's Electronic Music Studio:
 http://theremin.music.uiowa.edu/MISpiano.html
