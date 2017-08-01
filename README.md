@@ -11,6 +11,5 @@ https://roger-wu.github.io/keyboard-pianist
 * A natural fadeout when releasing keys.
 * pure HTML/CSS/Javascript.
 
-## Special Thanks
-Thanks for the samples provided by the University of Iowa's Electronic Music Studio:
-http://theremin.music.uiowa.edu/MISpiano.html
+## Sound Samples
+[University of Iowa Musical Instrument Samples - Piano](http://theremin.music.uiowa.edu/MISpiano.html)
