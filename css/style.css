@@ -4,6 +4,19 @@
 
 html {
   font-size: 16px;
+  touch-action: manipulation; /* to diable double-tap s.t. no touch delay */
+}
+
+@media screen and (max-width: 1200px) and (min-width: 768px) {
+  html {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  html {
+    font-size: 48px;
+  }
 }
 
 body {
@@ -150,7 +163,7 @@ a {
 .coin-qr-code-wrapper {
   display: none;
   position: absolute;
-  top: -205px;
+  top: -255px;
   left: 0;
   right: 0;
 }
