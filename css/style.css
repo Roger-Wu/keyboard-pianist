@@ -41,17 +41,17 @@ a {
   text-align: center;
 }
 
-@media screen and (max-width: 1200px) {
+/* @media screen and (max-width: 1200px) {
+  .piano-container {
+    font-size: 24px;
+  }
+} */
+
+@media screen and (max-width: 767px) {
   .piano-container {
     font-size: 24px;
   }
 }
-/*
-@media screen and (max-width: 767px) {
-  .piano-container {
-    font-size: 32px;
-  }
-} */
 
 .piano-keyboard {
   /* margin-left: 50%; */

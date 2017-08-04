@@ -299,6 +299,10 @@ var onload = function() {
 
   insert_key_mapping();
 
+  // scroll piano keyboard to center
+  var $piano_container = $('#piano-container');
+  $piano_container.scrollLeft(($keyboard.width()-$piano_container.width())/2)
+
   // keyboard events
 
   $(document).keydown(function(event) {
