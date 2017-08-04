@@ -1,11 +1,14 @@
 * {
-  box-sizing:border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
 }
 
 body {
   margin: 0;
   background-color: #DDD;
-  font-size: 16px;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: 100;
 }
@@ -127,6 +130,31 @@ a {
   color: #666;
   border: 1px solid #888;
   border-radius: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 2rem;
   cursor: pointer;
+}
+
+.donation-line {
+  margin: 0.5rem 0;
+}
+
+
+.coin-address:hover + .coin-qr-code-wrapper {
+  display: inline-block;
+}
+
+.coin-address-wrapper {
+  position: relative;
+}
+
+.coin-qr-code-wrapper {
+  display: none;
+  position: absolute;
+  top: -205px;
+  left: 0;
+  right: 0;
+}
+
+.coin-address-wrapper:hover > .coin-qr-code-wrapper {
+  display: inline-block;
 }

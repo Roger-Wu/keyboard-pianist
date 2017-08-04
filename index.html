@@ -2,10 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8"/>
-    <meta name="description" content="The Best Online Piano">
-    <meta name="keywords" content="keyboard pianist, piano, best, piano app, piano website, online piano, piano online, virtual piano, web piano, piano software, piano application, piano program, html piano, css piano, javascript piano, 鋼琴, 鍵盤鋼琴, 鍵盤鋼琴家, 鍵盤鋼琴師, 線上鋼琴, 虛擬鋼琴, 鋼琴軟體, 鋼琴程式, 最好, 最好用">
+    <meta name="description" content="Keyboard Pianist - Make Your Keyboard a Piano!">
+    <meta name="keywords" content="keyboard pianist, piano, best, online, virtual, 2017, instrument, piano app, piano website, online piano, piano online, virtual piano, web piano, piano software, piano application, piano program, html piano, css piano, javascript piano, 鋼琴, 鍵盤鋼琴, 鍵盤鋼琴家, 鍵盤鋼琴師, 線上鋼琴, 虛擬鋼琴, 鋼琴軟體, 鋼琴程式, 最好, 最好用">
     <meta name="author" content="Roger Wu">
-    <title>Keyboard Pianist - The Best Online Piano!</title>
+    <meta property="og:title" content="Keyboard Pianist" />
+    <meta property="og:description" content="Make Your Keyboard a Piano!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://roger-wu.github.io/keyboard-pianist/index.html" />
+    <meta property="og:image" content="images/og-image.png" />
+    <meta property="fb:app_id" content="1867253290190843" />
+    <title>Keyboard Pianist - Make Your Keyboard a Piano!</title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="js/index.js"></script>
     <link rel="stylesheet" href="css/style.css"/>
@@ -21,8 +27,8 @@
     </div>
     <div class="block-container">
       <div>Move Key Mapping</div>
-      <button class="square-button" id="left-arrow-button">◀</button>
-      <button class="square-button" id="right-arrow-button">▶</button>
+      <button class="square-button" id="left-arrow-button"><span>&#x25C0;</span></button>
+      <button class="square-button" id="right-arrow-button"><span>&#x25B6;</span></button>
     </div>
     <div class="block-container">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -36,10 +42,45 @@
       (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
       <div>If you enjoy being a keyboard pianist,<br />please <strong>disable AdBlock</strong> or <strong>make a small donation</strong> to help us maintain this website!</div>
-      <br />
-      <div><strong>PayPal</strong>: <a href="https://www.paypal.me/rogerwu" target="_blank">paypal.me/rogerwu</a></div>
-      <div><strong>BTC</strong>: 1NtUgawRP253vrbMaGHDSvYQnsBexUeeGh</div>
-      <div><strong>ETH</strong>: 0x10e733f07038b046a5Ab6eE7159e9912680832B9</div>
+      <div class="donation-line"><strong>PayPal</strong>: <a href="https://www.paypal.me/rogerwu" target="_blank">paypal.me/rogerwu</a></div>
+      <div class="donation-line">
+        <span><strong>BTC</strong>: </span>
+        <span class="coin-address-wrapper">
+          <a id="btc-address" class="coin-address"  href="bitcoin:1NtUgawRP253vrbMaGHDSvYQnsBexUeeGh">1NtUgawRP253vrbMaGHDSvYQnsBexUeeGh</a>
+          <span id="btc-qr-code" class="coin-qr-code-wrapper">
+            <img src="images/bitcoin.png" height="200" width="200">
+          </span>
+        <span>
+      </div>
+      <div id="eth-block" class="donation-line coin-block">
+        <span><strong>ETH</strong>: </span>
+        <span class="coin-address-wrapper">
+          <span id="eth-address" class="coin-address">0x10e733f07038b046a5Ab6eE7159e9912680832B9</span>
+          <span id="eth-qr-code" class="coin-qr-code-wrapper">
+            <img src="images/ether.png" height="200" width="200">
+          </span>
+        </span>
+      </div>
+      <div>If you have any suggestions, please <a href="mailto:gsetcrw@gmail.com?Subject=Suggestions%20to%20Keyboard%20Pianist" target="_top">contact us!</a></div>
     </div>
+
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1867253290190843',
+          xfbml      : true,
+          version    : 'v2.10'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
   </body>
 </html>

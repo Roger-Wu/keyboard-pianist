@@ -183,7 +183,7 @@ function fadeout_audio(note, prev_time=new Date()) {
 
 // insert key mapping on piano keys
 
-function insert_key_mapping_into_keys() {
+function insert_key_mapping() {
   // clean keys
   Object.values($piano_keys).forEach( function($key) {
     $key.empty();
@@ -211,7 +211,7 @@ function left_shift_key_mapping() {
 
   keyboard_left_note_idx -= 1;
   set_keycode_note_mapping();
-  insert_key_mapping_into_keys();
+  insert_key_mapping();
   show_hide_key_mapping();
 }
 
@@ -221,7 +221,7 @@ function right_shift_key_mapping() {
 
   keyboard_left_note_idx += 1;
   set_keycode_note_mapping();
-  insert_key_mapping_into_keys();
+  insert_key_mapping();
   show_hide_key_mapping();
 }
 
@@ -286,9 +286,9 @@ var onload = function() {
     $piano_keys[note] = $key;
   }
 
-  // insert key mapping
+  // insert key mapping into keys
 
-  insert_key_mapping_into_keys();
+  insert_key_mapping();
 
   // keyboard events
 
