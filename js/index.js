@@ -32,6 +32,13 @@ for (var octave = 1; octave <= 7; octave++) {
 notes.push('C8');
 natural_notes.push('C8');
 
+var piano_notes = [];
+var piano_left_note_idx = notes.indexOf(piano_left_note);
+var piano_right_note_idx = notes.indexOf(piano_right_note);
+for (var i = piano_left_note_idx; i <= piano_right_note_idx; i++) {
+  piano_notes.push(notes[i]);
+}
+
 keyboard_white_key_groups = [
   ['`'],
   ['Q', 'A', 'Z'],
@@ -241,9 +248,11 @@ var onload = function() {
   // insert html audio elements
 
   var $head = $('head');
-  for (var i = 0; i < notes.length; i++) {
-    var note = notes[i];
-    $head.append('<audio id="audio-' + note + '" src="audio/Piano.ff.' + note + '.mp3" preload="auto"></audio>');
+  for (var i = 0; i < piano_notes.length; i++) {
+    var note = piano_notes[i];
+    var $audio = $('<audio id="audio-' + note + '" src="audio/Piano.ff.' + note + '.mp3" preload="auto"></audio>');
+    $audio[0].load();  // because mobile won't auto load audio
+    $head.append($audio);
   }
 
   // mouse state
