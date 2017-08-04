@@ -277,10 +277,19 @@ var onload = function() {
     $key.data('note', note);
 
     // mouse events
+    $key.bind("touchstart", function(e){
+      press_key($(this).data('note'));
+      e.stopPropagation();
+    });
+    // $key.bind("touchend", function(e) {
+    //   release_key($(this).data('note'));
+    //   e.stopPropagation();
+    // });
     $key.mousedown(function() { press_key($(this).data('note')); });
     $key.mouseup(function() { release_key($(this).data('note')); });
     $key.mouseenter(function() { if (is_mouse_down) press_key($(this).data('note')); });
     $key.mouseleave(function() { release_key($(this).data('note')); });
+
 
     $keyboard.append($element);
     $piano_keys[note] = $key;
