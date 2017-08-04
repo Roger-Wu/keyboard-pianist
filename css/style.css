@@ -153,11 +153,11 @@ a {
 }
 
 
-.coin-address:hover + .coin-qr-code-wrapper {
+.coin-address:hover + .coin-qrcode-wrapper {
   display: inline-block;
 }
 
-.coin-address:active + .coin-qr-code-wrapper {
+.coin-address:active + .coin-qrcode-wrapper {
   display: inline-block;
 }
 
@@ -165,7 +165,7 @@ a {
   position: relative;
 }
 
-.coin-qr-code-wrapper {
+.coin-qrcode-wrapper {
   display: none;
   position: absolute;
   top: -260px;
@@ -173,7 +173,7 @@ a {
   right: 0;
 }
 
-.coin-qr-code-img {
+.coin-qrcode-img {
   width: 256px;
   height: 256px;
   padding: 16px;
