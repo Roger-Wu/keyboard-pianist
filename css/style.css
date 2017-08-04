@@ -156,6 +156,10 @@ a {
   display: inline-block;
 }
 
+.coin-address:active + .coin-qr-code-wrapper {
+  display: inline-block;
+}
+
 .coin-address-wrapper {
   position: relative;
 }
@@ -166,8 +170,4 @@ a {
   top: -255px;
   left: 0;
   right: 0;
-}
-
-.coin-address-wrapper:hover > .coin-qr-code-wrapper {
-  display: inline-block;
 }
