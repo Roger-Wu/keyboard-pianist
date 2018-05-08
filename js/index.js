@@ -250,7 +250,8 @@ var onload = function() {
   var $head = $('head');
   for (var i = 0; i < piano_notes.length; i++) {
     var note = piano_notes[i];
-    var $audio = $('<audio id="audio-' + note + '" src="audio/Piano.ff.' + note + '.mp3" preload="auto"></audio>');
+    // var $audio = $('<audio id="audio-' + note + '" src="audio/Piano.ff.' + note + '.mp3" preload="auto"></audio>');
+    var $audio = $('<audio id="audio-' + note + '" src="audio/piano/Piano.ff.' + note + '.ogg" preload="auto"></audio>');
     $audio[0].load();  // because mobile won't auto load audio
     $head.append($audio);
   }
