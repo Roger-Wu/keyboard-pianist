@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Keyboard Pianist - Make Your Keyboard a Piano!" />
-  <meta name="keywords" content="keyboard pianist, piano, best, online, virtual, 2017, instrument, piano app, piano website, online piano, piano online, virtual piano, web piano, piano software, piano application, piano program, html piano, css piano, javascript piano, 鋼琴, 鍵盤鋼琴, 鍵盤鋼琴家, 鍵盤鋼琴師, 線上鋼琴, 虛擬鋼琴, 鋼琴軟體, 鋼琴程式, 最好, 最好用"
+  <meta name="keywords" content="keyboard pianist, piano, best, online, virtual, 2017, instrument, piano app, piano website, online piano, piano online, virtual piano, web piano, piano software, piano application, piano program, html piano, css piano, javascript piano, 鋼琴, 鍵盤鋼琴, 鍵盤鋼琴家, 鍵盤鋼琴師, 線上鋼琴, 虛擬鋼琴, 鋼琴軟體, 鋼琴程式, 電腦鋼琴, 最好, 最好用"
   />
   <meta name="author" content="Roger Wu" />
   <meta property="og:title" content="Keyboard Pianist" />
@@ -15,7 +15,7 @@
   <meta property="og:image" content="https://roger-wu.github.io/keyboard-pianist/images/og-image.png" />
   <meta property="fb:app_id" content="1867253290190843" />
   <title>Keyboard Pianist - Make Your Keyboard a Piano!</title>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
   <link rel="stylesheet" href="css/style.css" />
   <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
 
@@ -81,6 +81,8 @@
   <audio id="audio-B6" src="audio/piano/Piano.ff.B6.ogg" preload="auto"></audio>
   <audio id="audio-C7" src="audio/piano/Piano.ff.C7.ogg" preload="auto"></audio>
 
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
     (adsbygoogle = window.adsbygoogle || []).push({
@@ -93,7 +95,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101090572-4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'UA-101090572-4');
@@ -108,44 +110,52 @@
   </div>
 
   <div class="block-container">
-    <input type="checkbox" id="is-show-key-mapping" name="show-keychar" value="showKeychar" checked><label> Show Key Mapping</label>
+    <input type="checkbox" id="is-show-key-mapping" name="show-keychar" value="showKeychar" checked>
+    <label> Show Key Mapping</label>
   </div>
 
   <div class="block-container">
     <div>Move Key Mapping</div>
-    <button class="square-button" id="left-arrow-button"><span>&#x25C0;</span></button>
-    <button class="square-button" id="right-arrow-button"><span>&#x25B6;</span></button>
+    <button class="square-button" id="left-arrow-button">
+      <span>&#x25C0;</span>
+    </button>
+    <button class="square-button" id="right-arrow-button">
+      <span>&#x25B6;</span>
+    </button>
   </div>
 
   <div class="block-container" id="adsense">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- Keyboard Pianist -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-3238476744837343"
-         data-ad-slot="5655449960"
-         data-ad-format="auto"></ins>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3238476744837343" data-ad-slot="5655449960" data-ad-format="auto"></ins>
     <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
+      (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
   </div>
 
   <div class="block-container">
     <div>If you enjoy being a keyboard pianist,</div>
-    <div>please <strong>disable AdBlock</strong> or <strong>make a small donation</strong> to help us maintain this website!</div>
+    <div>please
+      <strong>disable AdBlock</strong> or
+      <strong>make a small donation</strong> to help us maintain this website!</div>
 
-    <div class="donation-line"><strong>PayPal</strong>: <a href="https://www.paypal.me/rogerwu" target="_blank">paypal.me/rogerwu</a></div>
     <div class="donation-line">
-      <span><strong>BTC</strong>: </span>
+      <strong>PayPal</strong>:
+      <a href="https://www.paypal.me/rogerwu" target="_blank">paypal.me/rogerwu</a>
+    </div>
+    <div class="donation-line">
+      <span>
+        <strong>BTC</strong>: </span>
       <span class="coin-address-wrapper">
-        <a id="btc-address" class="coin-address"  href="bitcoin:1NtUgawRP253vrbMaGHDSvYQnsBexUeeGh">1NtUgawRP253vrbMaGHDSvYQnsBexUeeGh</a>
+        <a id="btc-address" class="coin-address" href="bitcoin:1NtUgawRP253vrbMaGHDSvYQnsBexUeeGh">1NtUgawRP253vrbMaGHDSvYQnsBexUeeGh</a>
         <span id="btc-qrcode" class="coin-qrcode-wrapper">
           <img class="coin-qrcode-img" src="images/btc-qrcode.png">
         </span>
       </span>
     </div>
     <div id="eth-block" class="donation-line coin-block">
-      <span><strong>ETH</strong>: </span>
+      <span>
+        <strong>ETH</strong>: </span>
       <span class="coin-address-wrapper">
         <span id="eth-address" class="coin-address">0x10e733f07038b046a5Ab6eE7159e9912680832B9</span>
         <span id="eth-qrcode" class="coin-qrcode-wrapper">
@@ -153,7 +163,9 @@
         </span>
       </span>
     </div>
-    <div>If you have any suggestions, please <a href="mailto:gsetcrw@gmail.com?Subject=Suggestions%20to%20Keyboard%20Pianist" target="_top">contact us!</a></div>
+    <div>If you have any suggestions, please
+      <a href="mailto:gsetcrw@gmail.com?Subject=Suggestions%20to%20Keyboard%20Pianist"
+        target="_top">contact us!</a>
     </div>
   </div>
 
