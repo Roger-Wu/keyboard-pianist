@@ -242,18 +242,24 @@ function show_hide_key_mapping() {
 
 // main
 
-var onload = function() {
+var main = function() {
   set_keycode_note_mapping();
 
   // insert html audio elements
 
-  var $head = $('head');
+  // var $head = $('head');
+  // for (var i = 0; i < piano_notes.length; i++) {
+  //   var note = piano_notes[i];
+  //   var $audio = $('<audio id="audio-' + note + '" src="audio/piano/Piano.ff.' + note + '.ogg" preload="auto"></audio>');
+  //   $audio[0].load();  // because mobile won't auto load audio
+  //   $head.append($audio);
+  // }
+
+  // force load audio
+
   for (var i = 0; i < piano_notes.length; i++) {
     var note = piano_notes[i];
-    // var $audio = $('<audio id="audio-' + note + '" src="audio/Piano.ff.' + note + '.mp3" preload="auto"></audio>');
-    var $audio = $('<audio id="audio-' + note + '" src="audio/piano/Piano.ff.' + note + '.ogg" preload="auto"></audio>');
-    $audio[0].load();  // because mobile won't auto load audio
-    $head.append($audio);
+    document.getElementById("audio-" + note).load();
   }
 
   // mouse state
@@ -351,4 +357,5 @@ var onload = function() {
   show_hide_key_mapping();
 }
 
-window.onload = onload;
+// window.onload = main;
+main();
