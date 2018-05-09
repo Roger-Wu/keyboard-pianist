@@ -1,10 +1,10 @@
 // configs
 
-var keyboard_left_note = 'G3';
 var piano_left_note = 'C2';
 var piano_right_note = 'C7';
-var piano_left_keyboard_left_note = 'C2';
-var piano_right_keyboard_left_note = 'C6';
+var keyboard_left_note = 'G3'; // the mapping note for keys QAZ
+var leftmost_keyboard_left_note = 'C2'; // leftmost possible note for keys QAZ
+var rightmost_keyboard_left_note = 'C6'; // rightmost possible note for keys QAZ
 var fadeout_time = 150; // ms
 var audio_start_time = 0;
 // jQuery.fx.interval = 4;
@@ -17,7 +17,7 @@ var flat_note_letters = ['Db', 'Eb', 'E', 'Gb', 'Ab', 'Bb', 'B'];
 
 var notes = ['A0', 'Bb0', 'B0'];
 var natural_notes = ['A0', 'B0'];
-var flat_notes = ['A0', 'Bb0', 'B'];
+var flat_notes = ['A0', 'Bb0', 'B0']; // the flat note left to natural_notes
 for (var octave = 1; octave <= 7; octave++) {
   for (var i = 0; i < note_letters.length; i++) {
     notes.push(note_letters[i] + octave.toString());
@@ -213,7 +213,7 @@ function insert_key_mapping() {
 // shift key mapping
 
 function left_shift_key_mapping() {
-  if (keyboard_left_note_idx === natural_notes.indexOf(piano_left_keyboard_left_note))
+  if (keyboard_left_note_idx === natural_notes.indexOf(leftmost_keyboard_left_note))
     return;
 
   keyboard_left_note_idx -= 1;
@@ -223,7 +223,7 @@ function left_shift_key_mapping() {
 }
 
 function right_shift_key_mapping() {
-  if (keyboard_left_note_idx === natural_notes.indexOf(piano_right_keyboard_left_note))
+  if (keyboard_left_note_idx === natural_notes.indexOf(rightmost_keyboard_left_note))
     return;
 
   keyboard_left_note_idx += 1;
@@ -333,9 +333,6 @@ var onload = function() {
     }
   });
   $(document).keyup(function(event) {
-    // disable TAB key
-    // if(event.which == 9) { event.preventDefault(); }
-
     var keycode = event.which;
     var note = keycode_to_note(keycode);
     release_key(note);
